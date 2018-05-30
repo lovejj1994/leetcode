@@ -24,7 +24,7 @@ public class TwoSumTest {
     @DisplayName("V1.0")
     void test() {
         TwoSum twoSum = new TwoSum();
-        assertEquals(Arrays.toString(twoSum.twoSum(new int[]{2, 7, 11, 15}, 9)), "[0, 1]");
+        assertEquals("[0, 1]", Arrays.toString(twoSum.twoSum(new int[]{2, 7, 11, 15}, 9)));
     }
 
 }

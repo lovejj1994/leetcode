@@ -23,11 +23,11 @@ public class LongestSubstringWithoutRepeatingCharactersTest {
         LongestSubstringWithoutRepeatingCharacters characters = new LongestSubstringWithoutRepeatingCharacters();
 
         int num_1 = characters.lengthOfLongestSubstring("abcabcbb");
-        assertEquals(num_1, 3);
+        assertEquals(3, num_1);
         int num_2 = characters.lengthOfLongestSubstring("bbbbb");
-        assertEquals(num_2, 1);
+        assertEquals(1, num_2);
         int num_3 = characters.lengthOfLongestSubstring("pwwkew");
-        assertEquals(num_3, 3);
+        assertEquals(3, num_3);
     }
 
 
