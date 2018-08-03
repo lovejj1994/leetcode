@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * There are two sorted arrays nums1 and nums2 of size m and n respectively.
  * <p>
@@ -18,36 +21,57 @@ public class MedianOfTwoSortedArrays {
 
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int num = nums1.length + nums2.length;
-        if (num % 2 == 1) {
-            return handel(num / 2, nums1, nums2, true);
+
+        if (num == 0) {
+            return 0;
+        }
+
+        List<Integer> sort = sort(num / 2, nums1, nums2);
+
+        int size = sort.size();
+        if (num % 2 == 0) {
+            return (sort.get(size - 1) + sort.get(size - 2)) / 2.0;
         } else {
-            return handel(num / 2 - 1, nums1, nums2, false);
+            return sort.get(size - 1);
         }
     }
 
 
-    public double handel(double value, int[] nums1, int[] nums2, boolean isOdd) {
-        int nums1Index = 0, nums2Index = 0, currentIndex = 0;
-
-        while (currentIndex < value) {
-            Integer value1 = null, value2 = null;
-            if (nums1.length > nums1Index) {
+    public List<Integer> sort(int length, int[] nums1, int[] nums2) {
+        ArrayList<Integer> resorts = new ArrayList<>();
+        int nums1Index = 0, nums2Index = 0, index = 0;
+        while (length >= index) {
+            Integer value1, value2;
+            if (nums1Index < nums1.length) {
                 value1 = nums1[nums1Index];
-            }
-            if (nums2.length > nums2Index) {
-                value2 = nums1[nums2Index];
+            } else {
+                resorts.add(nums2[nums2Index]);
+                nums2Index++;
+                index++;
+                continue;
             }
 
-            if (null == value1) {
+            if (nums2Index < nums2.length) {
+                value2 = nums2[nums2Index];
+            } else {
+                resorts.add(nums1[nums1Index]);
+                nums1Index++;
+                index++;
+                continue;
+            }
+
+            if (value1 > value2) {
+                resorts.add(nums2[nums2Index]);
                 nums2Index++;
-            } else if (null == value2) {
+            } else {
+                resorts.add(nums1[nums1Index]);
                 nums1Index++;
             }
 
-
-
-            currentIndex++;
+            index++;
         }
+
+        return resorts;
     }
 
 }
